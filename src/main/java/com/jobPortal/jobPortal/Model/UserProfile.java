@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "userprofile")
 public class UserProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

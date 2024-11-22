@@ -71,9 +71,8 @@
 </header>
 
 <div class="container">
-    <!-- Add Job Button -->
     <div class="add-job-btn">
-        <a th:href="@{/admin/job/add}">Add New Job</a>
+        <a th:href="@{/job/add-job/{email}(email=${email})}">Add New Job</a>
     </div>
 
     <table>
@@ -92,8 +91,8 @@
                 <td th:text="${job.company}"></td>
                 <td th:text="${job.location}"></td>
                 <td>
-                    <a th:href="@{/user/job/{id}(id=${job.id})}">View Details</a> |
-                    <a th:href="@{/admin/job/{id}/update(id=${job.id})}" class="update-btn">Update</a>
+<!--                    <a th:href="@{/job/view-details/{id}(id=${job.id})}">View Details</a> |-->
+                    <a th:href="@{/job/update-job/{email}/{id}(email=${email}, id=${job.id})}" class="update-btn">Update</a>
                 </td>
             </tr>
         </th:block>

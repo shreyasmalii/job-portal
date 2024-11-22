@@ -1,5 +1,7 @@
 package com.jobPortal.jobPortal.Controller;
 
+import com.jobPortal.jobPortal.Model.Admin;
+import com.jobPortal.jobPortal.Model.User;
 import com.jobPortal.jobPortal.Services.Interface.AdminService;
 import com.jobPortal.jobPortal.Services.Interface.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +17,36 @@ public class AdminController {
     @Autowired
     JobService jobService;
 
-    @GetMapping("/jobList")
-    public String jobList(Model model) {
-        model.addAttribute("jobs", jobService.getJobs());
+    @GetMapping("/login")
+    public String login(Model model){
+        model.addAttribute("role","admin");
+        return "login";
+    }
+    @PostMapping("/login")
+    public String authenticate(@ModelAttribute Admin admin){
+        if(!adminService.isValid(admin)){
+            return "redirect:/admin/login";
+        }
+        return "redirect:/admin/jobList/"+admin.getEmail();
+    }
+    @GetMapping("/sign-up")
+    public String signUp(Model model){
+        model.addAttribute("role","admin");
+        return "signUp";
+    }
+    @PostMapping("/sign-up")
+    public String addAdmin(@ModelAttribute Admin admin){
+        if(adminService.isValid(admin)){
+            return "signUp";
+        }
+        adminService.addUser(admin);
+        return "redirect:/admin/login";
+    }
+
+    @GetMapping("/jobList/{email}")
+    public String jobList(Model model, @PathVariable("email") String email) {
+        model.addAttribute("jobs", jobService.getJobs(email));
+        model.addAttribute("email", email);
         return "jobListAdmin";
     }
 

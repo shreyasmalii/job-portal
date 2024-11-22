@@ -10,12 +10,11 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "admin")
 public class Admin {
     @Id
     private String email;
-    private String username;
     private String password;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     List<Job> jobs;
 }

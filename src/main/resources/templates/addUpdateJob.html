@@ -116,62 +116,31 @@
     <div class="job-details-form">
         <h2>Edit Job Information</h2>
 
-        <!-- Display error messages if any -->
-        <div th:if="${#fields.hasErrors('title')}" class="error-message">
-            <ul>
-                <li th:errors="*{title}"></li>
-            </ul>
-        </div>
-        <div th:if="${#fields.hasErrors('company')}" class="error-message">
-            <ul>
-                <li th:errors="*{company}"></li>
-            </ul>
-        </div>
-        <div th:if="${#fields.hasErrors('location')}" class="error-message">
-            <ul>
-                <li th:errors="*{location}"></li>
-            </ul>
-        </div>
-        <div th:if="${#fields.hasErrors('description')}" class="error-message">
-            <ul>
-                <li th:errors="*{description}"></li>
-            </ul>
-        </div>
-        <div th:if="${#fields.hasErrors('salary')}" class="error-message">
-            <ul>
-                <li th:errors="*{salary}"></li>
-            </ul>
-        </div>
+        <form th:action="@{/job/add-job/{email}(email=${email})}" method="post" th:object="${job}">
 
-        <form th:action="@{/job/update}" method="post" th:object="${job}">
 
-            <!-- Job Title -->
             <label for="title"><strong>Job Title:</strong></label>
-            <input type="text" id="title" th:field="*{title}" placeholder="Enter job title" required/>
+            <input type="text" id="title" name="title" th:value="${job.title}" placeholder="Enter job title" required/>
+            <input type="hidden" id="id" name="id" th:value="${job.id}" />
 
-            <!-- Company Name -->
             <label for="company"><strong>Company:</strong></label>
-            <input type="text" id="company" th:field="*{company}" placeholder="Enter company name" required/>
+            <input type="text" id="company" name="company" th:value="${job.company}" placeholder="Enter company name" required/>
 
-            <!-- Location -->
             <label for="location"><strong>Location:</strong></label>
-            <input type="text" id="location" th:field="*{location}" placeholder="Enter job location" required/>
+            <input type="text" id="location" name="location" th:value="${job.location}" placeholder="Enter job location" required/>
 
-            <!-- Job Description -->
             <label for="description"><strong>Description:</strong></label>
-            <textarea id="description" th:field="*{description}" placeholder="Enter job description" required></textarea>
+            <input id="description" name="description" th:value="${job.description}" placeholder="Enter job description" required/>
 
-            <!-- Salary -->
             <label for="salary"><strong>Salary:</strong></label>
-            <input type="number" id="salary" th:field="*{salary}" placeholder="Enter salary" required/>
+            <input type="number" id="salary" name="salary" th:value="${job.salary}" placeholder="Enter salary" required/>
 
-            <!-- Submit Button -->
             <button type="submit">Update Job</button>
 
         </form>
 
         <div class="back-link">
-            <a href="/jobs">Back to Job Listings</a>
+            <a th:href="@{/admin/jobList/{email}(email=${email})}">Back to Job Listings</a>
         </div>
     </div>
 </div>

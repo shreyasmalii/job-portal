@@ -10,11 +10,10 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "users")
 public class User {
     @Id
     private String email;
-    private String username;
     private String password;
     @OneToMany
     List<Job> applications;

@@ -81,11 +81,11 @@
     </div>
 
     <div class="action-buttons">
-        <a th:href="@{/user/job/{id}/apply(id=${job.id})}">Apply for Job</a>
+        <a th:href="@{/user/apply/{email}/{id}(email=${email}, id=${job.id})}">Apply for Job</a>
     </div>
 
     <div class="back-link">
-        <a href="/user/jobs">Back to Job Listings</a>
+        <a th:href="@{/user/jobList/{email}(email=${email})}">Back to Job Listings</a>
     </div>
 </div>
 
