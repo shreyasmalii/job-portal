@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Job Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+        .profile-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+        }
+        .profile-card h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .profile-card label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .profile-card input, .profile-card textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .profile-card button {
+            width: 100%;
+            padding: 12px;
+            background-color: #5c6bc0;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .profile-card button:hover {
+            background-color: #3f51b5;
+        }
+        .profile-card .error-message {
+            color: red;
+            text-align: center;
+        }
+        .profile-card .profile-picture {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        .profile-card .profile-picture img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Student Profile</h1>
+</header>
+
+<div class="container">
+    <div class="profile-card">
+        <h2>View and Edit Your Profile</h2>
+
+        <form th:action="@{/user/profile/update/{email}(email=${email})}" method="post" enctype="multipart/form-data">
+
+
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" th:value="${userProfile.name}" placeholder="Enter your full name" required/>
+            <input type="hidden" id="id" name="id" th:value="${userProfile.id}" />
+
+            <!-- Phone Field -->
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" name="phone" th:value="${userProfile.phone}" placeholder="Enter your phone number"/>
+
+
+            <label for="marks10th">10th Marks (%)</label>
+            <input type="number" id="marks10th" name="marks10th" th:value="${userProfile.marks10th}" placeholder="Enter your 10th marks in percentage" required/>
+
+            <!-- 12th Marks Field -->
+            <label for="marks12th">12th Marks (%)</label>
+            <input type="number" id="marks12th" name="marks12th" th:value="${userProfile.marks12th}" placeholder="Enter your 12th marks in percentage" required/>
+            <label for="graduationMark">Graduation Marks (%)</label>
+            <input type="number" id="graduationMark" name="graduationMarks" th:value="${userProfile.graduationMarks}" placeholder="Enter your graduation marks in percentage" required/>
+            <!-- Resume Upload -->
+<!--            <label for="resume">Upload Resume</label>-->
+<!--            <input type="file" id="resume" name="resume" accept=".pdf,.docx,.txt"/>-->
+
+            <label for="skills">Skills</label>
+            <input type="text" id="skills" name="skills" th:value="${userProfile.skills}" placeholder="Enter your skills"/>
+
+            <!-- About Me Field -->
+            <label for="aboutMe">About Me</label>
+            <input id="aboutMe" name="aboutMe" th:value="${userProfile.aboutMe}" placeholder="Write a brief introduction about yourself"/>
+
+
+            <button type="submit">Update Profile</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

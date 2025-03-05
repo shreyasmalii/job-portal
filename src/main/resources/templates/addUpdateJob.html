@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+        }
+
+        .job-details-form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-details-form h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .job-details-form label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+            color: #555;
+        }
+
+        .job-details-form input,
+        .job-details-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .job-details-form input[type="number"] {
+            width: calc(100% - 24px);
+        }
+
+        .job-details-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #5c6bc0;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .job-details-form button:hover {
+            background-color: #3f51b5;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .error-message ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .error-message ul li {
+            margin-bottom: 5px;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #5c6bc0;
+            text-decoration: none;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Job Details</h1>
+</header>
+
+<div class="container">
+    <div class="job-details-form">
+        <h2>Edit Job Information</h2>
+
+        <form th:action="@{/job/add-job/{email}(email=${email})}" method="post" th:object="${job}">
+
+
+            <label for="title"><strong>Job Title:</strong></label>
+            <input type="text" id="title" name="title" th:value="${job.title}" placeholder="Enter job title" required/>
+            <input type="hidden" id="id" name="id" th:value="${job.id}" />
+
+            <label for="company"><strong>Company:</strong></label>
+            <input type="text" id="company" name="company" th:value="${job.company}" placeholder="Enter company name" required/>
+
+            <label for="location"><strong>Location:</strong></label>
+            <input type="text" id="location" name="location" th:value="${job.location}" placeholder="Enter job location" required/>
+
+            <label for="description"><strong>Description:</strong></label>
+            <input id="description" name="description" th:value="${job.description}" placeholder="Enter job description" required/>
+
+            <label for="salary"><strong>Salary:</strong></label>
+            <input type="number" id="salary" name="salary" th:value="${job.salary}" placeholder="Enter salary" required/>
+
+            <button type="submit">Update Job</button>
+
+        </form>
+
+        <div class="back-link">
+            <a th:href="@{/admin/jobList/{email}(email=${email})}">Back to Job Listings</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

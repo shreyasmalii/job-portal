@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .job-details {
+            margin-top: 20px;
+        }
+        .job-details p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .job-details strong {
+            font-weight: bold;
+        }
+        .action-buttons {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .action-buttons a {
+            padding: 10px 20px;
+            background-color: #5c6bc0;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .action-buttons a:hover {
+            background-color: #3f51b5;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-link a {
+            color: #5c6bc0;
+            text-decoration: none;
+        }
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Job Details</h1>
+</header>
+
+<div class="container">
+    <div class="job-details">
+        <p><strong>Job Title:</strong> <span th:text="${job.title}"></span></p>
+        <p><strong>Company:</strong> <span th:text="${job.company}"></span></p>
+        <p><strong>Location:</strong> <span th:text="${job.location}"></span></p>
+        <p><strong>Description:</strong> <span th:text="${job.description}"></span></p>
+        <p><strong>Salary:</strong> <span th:text="${job.salary}"></span></p>
+    </div>
+
+    <div class="action-buttons">
+        <a th:href="@{/user/apply/{email}/{id}(email=${email}, id=${job.id})}">Apply for Job</a>
+    </div>
+
+    <div class="back-link">
+        <a th:href="@{/user/jobList/{email}(email=${email})}">Back to Job Listings</a>
+    </div>
+</div>
+
+</body>
+</html>

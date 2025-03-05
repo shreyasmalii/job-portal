@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Job Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+        .form-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        .form-card h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-card label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .form-card input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-card button {
+            width: 100%;
+            padding: 12px;
+            background-color: #5c6bc0;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-card button:hover {
+            background-color: #3f51b5;
+        }
+        .form-card .error-message {
+            color: red;
+            text-align: center;
+        }
+        .form-card .already-registered {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .form-card .already-registered a {
+            color: #5c6bc0;
+            text-decoration: none;
+        }
+        .form-card .already-registered a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Sign Up for Job Portal</h1>
+</header>
+
+<div class="container">
+    <div class="form-card">
+        <h2>Create Your Account</h2>
+
+        <form th:action="@{/{role}/sign-up(role=${role})}" method="post">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required/>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password"  placeholder="Enter your password" required/>
+
+            <!-- Confirm Password Field -->
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required/>
+
+
+            <!-- Submit Button -->
+            <button type="submit">Sign Up</button>
+        </form>
+        <div class="already-registered">
+            <p>Already have an account? <a href="/login">Login here</a></p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
